@@ -25,10 +25,10 @@ for i in range(len(images)):
     lbp_img.append(lbp(plt.imread(os.path.join(cwd, images[i])), 3, mask)) 
 
 #choosing an image and displaying it
-img_number = 10
-img = plt.imread(os.path.join(cwd, images[img_number]))
-plt.figure()
-plt.imshow(img)
+img_number = 7
+f, axarr = plt.subplots(2,1)
+axarr[0].imshow(plt.imread(os.path.join(cwd, images[img_number])))
+axarr[1].imshow(lbp_img[img_number])
 
 #calculate euclidean distance between the chosen image and data set
 euclidean_distances = list()
@@ -47,8 +47,13 @@ for j in range(3):
     minim = maxim
     maxim = max(euclidean_distances)
     
-    plt.figure()
-    plt.imshow(plt.imread(os.path.join(cwd, images[index])))
+    f, axarr = plt.subplots(2,1)
+    f.suptitle('Image closest no.: ' + str(j+1))
+    axarr[0].imshow(plt.imread(os.path.join(cwd, images[index])))
+    axarr[1].imshow(lbp_img[index])
+
+    #plt.figure()
+
     
     print(index)
 

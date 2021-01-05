@@ -1,5 +1,5 @@
 import numpy as np
-
+from skimage import color
 
 def window_processing(roi, current_value, mask, window_size):
 
@@ -11,6 +11,7 @@ def window_processing(roi, current_value, mask, window_size):
 
 def lbp(img, window_size, mask):
     
+    img = color.rgb2gray(img)
     h = img.shape[0]
     w = img.shape[1]
     new_img = np.zeros((h, w))
@@ -20,9 +21,10 @@ def lbp(img, window_size, mask):
             
             #currently extracting the first colour channel
             roi = img[i - window_size//2 : i + window_size//2 +1, \
-                      j - window_size//2 : j + window_size//2 + 1, 0]
+                      j - window_size//2 : j + window_size//2 + 1 ]
                 
             current_value = img[i][j]
             new_img[i][j] = window_processing(roi, current_value, mask, window_size)
     
     return new_img
+
