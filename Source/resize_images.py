@@ -11,6 +11,6 @@ images = os.listdir(cwd)
 
 #resize the data set
 for i in range(len(images)):
-    img = Image.open(cwd + "\\" +images[i])
+    img = Image.open(cwd + "/" +images[i])
     img = img.resize((384, 256))
-    img.save(cwd + "\\" + images[i])
+    img.save(cwd + "/" + images[i])

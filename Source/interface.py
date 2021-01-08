@@ -2,30 +2,34 @@
 import wx
 
 
-def onButtonFrm1(event): 
-    frm1.Show() 
-
-def onButtonFrm2(event): 
-    print("merge") 
-
+def onButtonFrm1(event):
+     openFileDialog.ShowModal()
+     img_path = openFileDialog.GetPath()
+     openFileDialog.Destroy()
+     png = wx.Image(img_path, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+     wx.StaticBitmap(frm,-1, png, (100, 100), (png.GetWidth(), png.GetHeight()))
+     
 
 # Next, create an application object.
 app = wx.App()
 
 # Then a frame.
 frm = wx.Frame(None, title="Hello World")
-frm1 = wx.Frame(None, title="Fereastra 2")
+
 
 panel = wx.Panel(frm, wx.ID_ANY) 
-panel1 = wx.Panel(frm1, wx.ID_ANY) 
 
 
 button = wx.Button(panel, wx.ID_ANY, 'Test', (10, 10)) 
 button.Bind(wx.EVT_BUTTON, onButtonFrm1)  
 
 
-button = wx.Button(panel1, wx.ID_ANY, 'Test', (10, 10)) 
-button.Bind(wx.EVT_BUTTON, onButtonFrm2)
+button = wx.Button(panel, wx.ID_ANY, 'asdfasd', (70, 70)) 
+
+# Create open file dialog
+openFileDialog = wx.FileDialog(frm, "Open", "", "", "", wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+
+
 # Show it.
 frm.Show()
 
