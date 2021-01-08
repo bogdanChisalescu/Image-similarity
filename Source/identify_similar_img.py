@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from lbp import lbp, mlbp
+from lbp import *
 from euclidean_distance import euclidean_distance
 import time
 
@@ -23,10 +23,11 @@ mask = pow(2, mask)
 lbp_img = list()
 for i in range(len(images)):
     #lbp_img.append(lbp(plt.imread(os.path.join(cwd, images[i])), 3, mask)) 
-    lbp_img.append(mlbp(plt.imread(os.path.join(cwd, images[i])), 3, mask))
+    #lbp_img.append(mlbp(plt.imread(os.path.join(cwd, images[i])), 3, mask))
+    lbp_img.append(circular_lbp(plt.imread(os.path.join(cwd, images[i])), 16, 2))
 
 #choosing an image and displaying it
-img_number = 16
+img_number = 18
 f, axarr = plt.subplots(2,1)
 axarr[0].imshow(plt.imread(os.path.join(cwd, images[img_number])))
 axarr[1].imshow(lbp_img[img_number])
