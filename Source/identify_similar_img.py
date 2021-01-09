@@ -19,49 +19,72 @@ images = os.listdir(cwd)
 mask = np.array([[7,6,5], [0,0,4], [1,2,3]])
 mask = pow(2, mask)
 
+
+
 #execute lbp on every image in the dataset
 lbp_img = list()
 for i in range(len(images)):
-    lbp_img.append(lbp(plt.imread(os.path.join(cwd, images[i])), 3, mask)) 
+    #lbp_img.append(lbp(plt.imread(os.path.join(cwd, images[i])), 3, mask)) 
     #lbp_img.append(mlbp(plt.imread(os.path.join(cwd, images[i])), 3, mask))
-    #lbp_img.append(circular_lbp(plt.imread(os.path.join(cwd, images[i])), 3, 2))
+    lbp_img.append(circular_lbp(plt.imread(os.path.join(cwd, images[i])), 3, 2))
 
+
+
+'''
 #choosing an image and displaying it
 # -10 for image number in folder
 img_number = 40
+
 f, axarr = plt.subplots(2,1)
 axarr[0].imshow(plt.imread(os.path.join(cwd, images[img_number])))
 axarr[1].imshow(lbp_img[img_number])
+'''
 
-#calculate euclidean distance between the chosen image and data set
-euclidean_distances = list()
-for i in range(len(images)):
-    euclidean_distances.append(euclidean_distance(lbp_img[img_number], lbp_img[i]))
+score = list()
+
+for main_img in images:
     
-
-#print the 3 most similar images
-minim = 0
-maxim = max(euclidean_distances)
-index = 0
-for j in range(3):
+    #determining image number and class
+    img_number = main_img.split("_")[0]
+    img_class = main_img.split("_")[len(main_img.split("_")) - 1].split(".")[0]
+    
+    img_score = 0
+    
+    #calculate euclidean distance between the chosen image and data set
+    euclidean_distances = list()
     for i in range(len(images)):
-        if euclidean_distances[i] > minim and euclidean_distances[i] <= maxim:
-            maxim = euclidean_distances[i]
-            index = i
-    minim = maxim
+        euclidean_distances.append(euclidean_distance(lbp_img[int(img_number) - 10], lbp_img[i]))
+        
+    
+    #print the 3 most similar images
+    minim = 0
     maxim = max(euclidean_distances)
+    index = 0
+    for j in range(3):
+        for i in range(len(images)):
+            if euclidean_distances[i] > minim and euclidean_distances[i] <= maxim:
+                maxim = euclidean_distances[i]
+                index = i
+        minim = maxim
+        maxim = max(euclidean_distances)
+        
+        '''
+        f, axarr = plt.subplots(2,1)
+        f.suptitle('Image closest no.: ' + str(j+1))
+        axarr[0].imshow(plt.imread(os.path.join(cwd, images[index])))
+        axarr[1].imshow(lbp_img[index])
+        '''
+        
+        #open index-th image
+        closest = images[index]
+        closest_class = closest.split("_")[len(closest.split("_")) - 1].split(".")[0]        
+        if img_class == closest_class:
+            img_score += 1
+        
+    score.append(img_score)
     
-    f, axarr = plt.subplots(2,1)
-    f.suptitle('Image closest no.: ' + str(j+1))
-    axarr[0].imshow(plt.imread(os.path.join(cwd, images[index])))
-    axarr[1].imshow(lbp_img[index])
-
-    #plt.figure()
-
-    
-    print(index)
-    
-
+avg_score = np.sum(score) / len(score)
+print(avg_score)
 
 #stop timer and print execution time
 end = time.time()

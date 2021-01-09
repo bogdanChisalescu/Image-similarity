@@ -32,11 +32,14 @@ def lbp(img, window_size, mask):
     
     #stop timer and print execution time
     end = time.time()
-    print("Time spent in circular lbp [s]: " + str(end- start))
+    print("Time spent in basic lbp [s]: " + str(end- start))
     return new_img
 
 
 def mlbp(img, window_size, mask):
+    
+    #start timer
+    start = time.time()
     
     img = color.rgb2gray(img)
     h = img.shape[0]
@@ -52,6 +55,9 @@ def mlbp(img, window_size, mask):
             roi_mean = np.sum(roi)/(window_size**2)
             new_img[i][j] = window_processing(roi, roi_mean, mask, window_size)
     
+    #stop timer and print execution time
+    end = time.time()
+    print("Time spent in mean lbp [s]: " + str(end- start))
     return new_img
 
 
