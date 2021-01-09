@@ -22,12 +22,13 @@ mask = pow(2, mask)
 #execute lbp on every image in the dataset
 lbp_img = list()
 for i in range(len(images)):
-    #lbp_img.append(lbp(plt.imread(os.path.join(cwd, images[i])), 3, mask)) 
+    lbp_img.append(lbp(plt.imread(os.path.join(cwd, images[i])), 3, mask)) 
     #lbp_img.append(mlbp(plt.imread(os.path.join(cwd, images[i])), 3, mask))
-    lbp_img.append(circular_lbp(plt.imread(os.path.join(cwd, images[i])), 16, 2))
+    #lbp_img.append(circular_lbp(plt.imread(os.path.join(cwd, images[i])), 3, 2))
 
 #choosing an image and displaying it
-img_number = 18
+# -10 for image number in folder
+img_number = 40
 f, axarr = plt.subplots(2,1)
 axarr[0].imshow(plt.imread(os.path.join(cwd, images[img_number])))
 axarr[1].imshow(lbp_img[img_number])
@@ -37,6 +38,7 @@ euclidean_distances = list()
 for i in range(len(images)):
     euclidean_distances.append(euclidean_distance(lbp_img[img_number], lbp_img[i]))
     
+
 #print the 3 most similar images
 minim = 0
 maxim = max(euclidean_distances)
@@ -58,6 +60,8 @@ for j in range(3):
 
     
     print(index)
+    
+
 
 #stop timer and print execution time
 end = time.time()

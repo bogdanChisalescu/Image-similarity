@@ -13,4 +13,5 @@ images = os.listdir(cwd)
 for i in range(len(images)):
     img = Image.open(cwd + "/" +images[i])
     img = img.resize((384, 256))
-    img.save(cwd + "/" + images[i])
+    name = images[i].split(".")
+    img.save(cwd + "/" + str(i+10) + "." + str( name[len(name)-1] ))
