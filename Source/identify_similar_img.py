@@ -24,9 +24,11 @@ mask = pow(2, mask)
 #execute lbp on every image in the dataset
 lbp_img = list()
 for i in range(len(images)):
-    #lbp_img.append(lbp(plt.imread(os.path.join(cwd, images[i])), 3, mask)) 
+    lbp_img.append(lbp(plt.imread(os.path.join(cwd, images[i])), 3, mask)) 
     #lbp_img.append(mlbp(plt.imread(os.path.join(cwd, images[i])), 3, mask))
-    lbp_img.append(circular_lbp(plt.imread(os.path.join(cwd, images[i])), 3, 2))
+    #lbp_img.append(circular_lbp(plt.imread(os.path.join(cwd, images[i])), 8, 1))
+    #lbp_img.append(circular_lbp(plt.imread(os.path.join(cwd, images[i])), 16, 2))
+    #lbp_img.append(circular_lbp(plt.imread(os.path.join(cwd, images[i])), 8, 3))
 
 
 
