@@ -24,19 +24,16 @@ class Panel(wx.Panel):
         img_path = openFileDialog.GetPath()
         #openFileDialog.Destroy()
         
-        # if Linux == True: print("it is what it is!")
-        img_name = img_path.split("\\")[len(img_path.split("\\")) - 1]
-        
-        chosen = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_name, wx.BITMAP_TYPE_ANY))
+        chosen = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_path, wx.BITMAP_TYPE_ANY))
         chosen.SetPosition((30, 60))
         
-        similar1 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_name, wx.BITMAP_TYPE_ANY))
+        similar1 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_path, wx.BITMAP_TYPE_ANY))
         similar1.SetPosition((670, 60))
         
-        similar2 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_name, wx.BITMAP_TYPE_ANY))
+        similar2 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_path, wx.BITMAP_TYPE_ANY))
         similar2.SetPosition((470, 330))
         
-        similar3 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_name, wx.BITMAP_TYPE_ANY))
+        similar3 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_path, wx.BITMAP_TYPE_ANY))
         similar3.SetPosition((870, 330))
         
         
