@@ -1,5 +1,5 @@
 import wx
-
+import os
 
 ########################################################################
 class Panel(wx.Panel):
@@ -21,20 +21,35 @@ class Panel(wx.Panel):
         """
         #Get the image location
         openFileDialog.ShowModal()
+
+        global img_path
+
         img_path = openFileDialog.GetPath()
+        img_path_lbp='D:\Facultate\IOM\Image-similarity\LBP_img'
         #openFileDialog.Destroy()
-        
-        chosen = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_path, wx.BITMAP_TYPE_ANY))
-        chosen.SetPosition((30, 60))
-        
-        similar1 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_path, wx.BITMAP_TYPE_ANY))
-        similar1.SetPosition((670, 60))
-        
-        similar2 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_path, wx.BITMAP_TYPE_ANY))
-        similar2.SetPosition((470, 330))
-        
-        similar3 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_path, wx.BITMAP_TYPE_ANY))
-        similar3.SetPosition((870, 330))
+        return img_path
+
+#trebuie returnata acest img_path
+#mai putem crea o functie ce apeleaza aceasta functie si primeste valoare img_path si apoi arata pozele
+
+        # chosen = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(img_path, wx.BITMAP_TYPE_ANY))
+        # chosen.SetPosition((30, 60))
+        #
+        # self.text = wx.StaticText(self, wx.ID_ANY, img_path)
+
+        #timeout pana cand se termina lbd
+        # #afisare counter lbp
+        # self.text = wx.StaticText(self, wx.ID_ANY, "Hello World!")
+        #
+        # #afisare imagini lbp
+        # similar1 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(os.path.join(img_path_lbp,'1.jpg'), wx.BITMAP_TYPE_ANY))
+        # similar1.SetPosition((670, 60))
+        #
+        # similar2 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(os.path.join(img_path_lbp,'2.jpg'), wx.BITMAP_TYPE_ANY))
+        # similar2.SetPosition((470, 330))
+        #
+        # similar3 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(os.path.join(img_path_lbp,'3.jpg'), wx.BITMAP_TYPE_ANY))
+        # similar3.SetPosition((870, 330))
         
         
 
@@ -63,7 +78,7 @@ if __name__ == "__main__":
     # Create open file dialog
     openFileDialog = wx.FileDialog(frame, "Open", "", "", "", wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
     
-   
-
+    app.onButton
+    img_path3=img_path
     app.MainLoop()
     
