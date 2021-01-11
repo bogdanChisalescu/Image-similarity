@@ -1,0 +1,63 @@
+\section{LBP si distanta euclidiana}
+
+\subsection{Local binary pattern}
+
+\quad In continuare vom descrie metodele LBP ce au fost folosite in
+actuala lucrare.
+
+\quad Local binary pattern sau in forma sa abreviata LBP este o operatie punctuala centrata  
+pe o vecinatate a unei imagini in urma careia se poate forma un descriptor vizual. Aceasta 
+operatie este caracterizata de extragerea unei texturi.
+
+
+\subsection{LBP fundamental}
+
+\quad Operatia LBP fundamentala presupune parcurgerea imaginii pixel cu pixel si extragerea 
+unei vecinatati 
+\[
+V_8 = \{ (1,-1), (0,1), (1,1), (0,-1), (0,0), (0,1),(-1,-1), (-1,0), (-1,1) \}	
+\]
+
+cu coordonate relative fata de valoarea curent prelurata. Pixelul curent aflat in prelucrare ce va avea in vecinatate coordonatele 
+$(0,0)$ este considerat ca valoare de prag si sunt comparati cu acesta
+ceilalti pixeli apartinand vecinatatii. In urma comparatiei, daca valoarea din vecinatate este mai mare decat valoarea pixelului central 
+atunci aceasta ia valoarea 1, altfel ii este asignata valoarea 0. In
+acest fel se creeaza un tipar de 1 si 0. Acest tipar este parcurs in sens orar in vecinatate, formadu-se cu el un numar binar ce mai apoi convertit in numar zecimal ne da valoarea descriptorului pentru acea 
+vecinatate. \\
+\null \quad Aplicand LBP pe dimensiunea intregii imagini obtinem un descriptor
+de aceleasi dimensiuni cu imaginea initiala. In prezenta lucrare 
+imaginile sunt parcurse astfel incat valorile marginale ce depasesc
+limitele imaginii sunt ignorate prin pozitionarea convenabila a 
+punctului de start. \\
+
+\begin{figure}[h]
+	\includegraphics[width=14cm]{basic_lbp.png}
+	\centering
+	\caption{Schema de aplicare LBP fundamental pe vecinatatea $V_8$}
+\end{figure}
+
+
+\subsection{LBP-mediu}
+
+\quad Aceasta forma de LBP este identica cu cea fundamentala cu exceptia
+faptului ca, valoarea de prag este considerata media tuturor pixelilor
+ce apartin vecinatatii $V_8$.
+
+
+\subsection{LBP circular}
+
+\quad LBP-ul circular are la baza acelasi principiu ca si cel
+fundamental. Consideram imaginea de prelucrat $I(x,y)$ si coordonatele
+punctului curent relative la imagine $x_p$ si $y_p$. Vecinatatea 
+circulara este definita de cercul $C(I(x_p,y_p), R)$. Pe acest 
+cerc sunt alese un numar de P puncte echidistante. Coordonatele 
+punctelor sunt calculate dupa urmataorele formule:
+	
+\begin{equation}
+	x_k = x_p + Rcos(\frac{2 \pi k}{P}), k = 
+\end{equation}
+
+\begin{equation}
+	y_k = y_p - Rsin(\frac{2 \pi k}{P}), k = 
+\end{equation}
+
