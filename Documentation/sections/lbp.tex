@@ -20,7 +20,7 @@ unei vecinatati
 V_8 = \{ (1,-1), (0,1), (1,1), (0,-1), (0,0), (0,1),(-1,-1), (-1,0), (-1,1) \}	
 \]
 
-cu coordonate relative fata de valoarea curent prelurata. Pixelul curent aflat in prelucrare ce va avea in vecinatate coordonatele 
+cu coordonate relative fata de valoarea curent prelucrata. Pixelul curent aflat in prelucrare ce va avea in vecinatate coordonatele 
 $(0,0)$ este considerat ca valoare de prag si sunt comparati cu acesta
 ceilalti pixeli apartinand vecinatatii. In urma comparatiei, daca valoarea din vecinatate este mai mare decat valoarea pixelului central 
 atunci aceasta ia valoarea 1, altfel ii este asignata valoarea 0. In
@@ -86,7 +86,6 @@ $f(x_k ,y_k)$ ca fiind:
 	\caption{Interpretare vizuala a interpolarii biliniare}
 \end{figure}
 
-\newpage
 
 Avand la dispozitie valoarea intensitatii imaginii in punctul central 
 $ I(x_p,y_p) $ si valorile asociate punctelor echidistante 
@@ -134,4 +133,5 @@ unde $ S(u) $ este definita ca:
 
 \subsection{Distanta euclidiana}
 
-
+\quad Pentru a putea determina cele mai "apropiate" imagini este necesar sa dispunem de un mod prin care sa masuram distanta intre descriptorii lbp; pentru  aceasta lucrare a fost aleasa distanta euclidiana. Definim distanta euclidiana pentru doua semnale bidimensionale discrete ca fiind $D_e(p,q) = \sqrt{ \sum_{i=1}^{M} \sum_{j=1}^{N}{({p_{ij} - q_{ij} })^2 }}$, important de mentionat fiind
+faptul ca este necesar ca cele 2 semnale sa aiba aceleasi dimensiuni ale suportului. In cazul nostru M si N sunt numarul de linii respectiv de coloane al descriptorilor LBP.
