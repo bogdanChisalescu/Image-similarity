@@ -36,7 +36,7 @@ class Panel(wx.Panel):
         chosen.SetPosition((450, 50))
         
         #create compute data set button
-        btn_compute = wx.Button(self, label="Compute", pos = (50, 85), size = (100, 50))
+        btn_compute = wx.Button(self, label="Compute", pos = (50, 85), size = (100, 30))
         btn_compute.Bind(wx.EVT_BUTTON, self.onButtonCompute)
         
         #info text
@@ -67,7 +67,7 @@ class Panel(wx.Panel):
         #stop timer and print execution time
         end = time.time()
         #info text
-        self.text.SetLabel("LBP on data set done! Time spend = " + str("{:.2f}".format(end - start)) + " [s]")
+        self.text.SetLabel("LBP on data set done! Time spent = " + str("{:.2f}".format(end - start)) + " [s]")
         
         
         #get chosen image index in dataset (we need it in the Euclidean distance function)
