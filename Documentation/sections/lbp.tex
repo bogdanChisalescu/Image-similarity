@@ -1,0 +1,137 @@
+\section{LBP si distanta euclidiana}
+
+\subsection{Local binary pattern}
+
+\quad In continuare vom descrie metodele LBP ce au fost folosite in
+actuala lucrare. Toate variantele de LBP prezentate opereaza pe imagini 
+cu nivele de gri, in cazul in care imaginea de prelucrat nu este o imagine
+exclusiv cu nivele de gri, aceasta va fi convertita.
+
+\quad Local binary pattern sau in forma sa abreviata LBP este o operatie punctuala centrata  
+pe o vecinatate a unei imagini in urma careia se poate forma un descriptor vizual. Aceasta 
+operatie este caracterizata de extragerea unei texturi.
+
+
+\subsection{LBP fundamental}
+
+\quad Operatia LBP fundamentala presupune parcurgerea imaginii pixel cu pixel si extragerea 
+unei vecinatati 
+\[
+V_8 = \{ (1,-1), (0,1), (1,1), (0,-1), (0,0), (0,1),(-1,-1), (-1,0), (-1,1) \}	
+\]
+
+cu coordonate relative fata de valoarea curent prelucrata. Pixelul curent aflat in prelucrare ce va avea in vecinatate coordonatele 
+$(0,0)$ este considerat ca valoare de prag si sunt comparati cu acesta
+ceilalti pixeli apartinand vecinatatii. In urma comparatiei, daca valoarea din vecinatate este mai mare decat valoarea pixelului central 
+atunci aceasta ia valoarea 1, altfel ii este asignata valoarea 0. In
+acest fel se creeaza un tipar de 1 si 0. Acest tipar este parcurs in sens orar in vecinatate, formadu-se cu el un numar binar ce mai apoi convertit in numar zecimal ne da valoarea descriptorului pentru acea 
+vecinatate. \\
+\null \quad Aplicand LBP pe dimensiunea intregii imagini obtinem un descriptor
+de aceleasi dimensiuni cu imaginea initiala. In prezenta lucrare 
+imaginile sunt parcurse astfel incat valorile marginale ce depasesc
+limitele imaginii sunt ignorate prin pozitionarea convenabila a 
+punctului de start. \\
+
+\begin{figure}[H]
+	\includegraphics[width=17cm]{basic_lbp.png}
+	\centering
+	\caption{Schema de aplicare LBP fundamental pe vecinatatea $V_8$}
+\end{figure}
+
+
+\subsection{LBP-mediu}
+
+\quad Aceasta forma de LBP este identica cu cea fundamentala cu exceptia
+faptului ca, valoarea de prag este considerata media tuturor pixelilor
+ce apartin vecinatatii $V_8$.
+
+
+\subsection{LBP circular}
+
+\quad LBP-ul circular are la baza acelasi principiu ca si cel
+fundamental. Consideram imaginea de prelucrat $I(x,y)$ si coordonatele
+punctului curent relative la imagine $x_p$ si $y_p$. Vecinatatea 
+circulara este definita de cercul $C(I(x_p,y_p), R)$. Pe acest 
+cerc sunt alese un numar de P puncte echidistante. Coordonatele 
+punctelor sunt calculate dupa urmataorele formule:
+	
+\begin{equation}
+	x_k = x_p + Rcos(\frac{2 \pi k}{P}), k \in {\{0,1,...,P-1\}}
+\end{equation}
+
+\begin{equation}
+	y_k = y_p - Rsin(\frac{2 \pi k}{P}), k \in {\{0,1,...,P-1\}}
+\end{equation}
+
+In cazul in care $x_k$ si $y_k$ $\notin \mathbb{Z}$ si deci nu se 
+poate obtine direct $ I(x_k, y_k) $, aceasta va fi interpolata 
+biliniar. \\
+
+Consideram un semnal bidimensional discret $ f(x,y) $, si 2 
+indici $x_k$ si $y_k$ pentru care semnalul $ f $ nu este
+definit. Putem interpola biliniar valoarea semnalului $ f $
+in punctul $(x_k ,y_k)$ considerand cele mai apropiate 4 puncte ale semnalului
+de $(x_k ,y_k)$. Notand indicii acestor puncte considerandu-l pe
+cel din stanga jos origine, putem afla valoarea semnalului 
+$f(x_k ,y_k)$ ca fiind: 
+
+\begin{equation}
+	f(x_k ,y_k) \approxeq f(0,0)(1-x)(1-y) + f(1,0)x(1-y) + f(0,1)(1-x)y
+	+ f(1,1)xy
+\end{equation}
+
+\begin{figure}[H]
+	\includegraphics[width=2.2cm]{visual_interpolation.png}
+	\centering
+	\caption{Interpretare vizuala a interpolarii biliniare}
+\end{figure}
+
+
+Avand la dispozitie valoarea intensitatii imaginii in punctul central 
+$ I(x_p,y_p) $ si valorile asociate punctelor echidistante 
+$ I(x_k, y_k) , k \in {\{0,1,...,P-1\}} $ putem determina valoarea 
+returnata de LBP circular pentru punctul $ (x_p, y_p) $
+ca fiind: \\
+
+\begin{equation}
+	LBP_{(P,R)} = \sum_{k=0}^{P-1}{S(I(x_k, y_k) - I(x_p,y_p))2^{k}}
+\end{equation}
+
+
+unde $ S(u) $ este definita ca: 
+
+\begin{equation}
+	S(u)= \left\{
+	\begin{array}{ll}
+		1, & u\geq 0 \\
+		0, & u< 0 \\
+	\end{array} 
+	\right.
+\end{equation}
+
+
+\begin{figure}[H]
+	\includegraphics[width=7cm]{lbp_circular.png}
+	\centering
+	\caption{Vecinatatile circulare (8,1), (16,2), respectiv (8,3)}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{cc}
+		\subfloat[Imaginea originala]{\includegraphics[width = 4.3cm]{orig.png}} &
+		\subfloat[LBP fundamental]   {\includegraphics[width = 4.3cm]{basic.png}}\\
+		\subfloat[LBP mediu]         {\includegraphics[width = 4.3cm]{mean.png}} &
+		\subfloat[LBP circular]      {\includegraphics[width = 4.3cm]{circular.png}}\\
+	\end{tabular}
+	\caption{Descriptorii LBP}
+\end{figure}
+
+
+
+
+\subsection{Distanta euclidiana}
+
+\quad Pentru a putea determina cele mai "apropiate" imagini este necesar sa dispunem de un mod prin care sa masuram distanta intre descriptorii lbp; pentru  aceasta lucrare a fost aleasa distanta euclidiana. Definim distanta euclidiana pentru doua semnale bidimensionale discrete ca fiind $D_e(p,q) = \sqrt{ \sum_{i=1}^{M} \sum_{j=1}^{N}{({p_{ij} - q_{ij} })^2 }}$, important de mentionat fiind
+faptul ca este necesar ca cele 2 semnale sa aiba aceleasi dimensiuni ale suportului. In cazul nostru M si N sunt numarul de linii respectiv de coloane al descriptorilor LBP.

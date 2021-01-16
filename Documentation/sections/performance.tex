@@ -1,0 +1,41 @@
+\section{Performante}
+
+\quad Pentru a analiza performanta si pentru a alege varianta de LBP
+optima va trebui sa definim o metrica sau un mod prin care se va putea
+discerne intre rezultatele obtinute. Avand in vedere faptul ca, algoritmul
+determina si alege cele mai similare imagini dintr-un mediu controlat
+in totalitate de utilizator, rezultatele vor fi intr-o mare masura
+dependente de setul de date, adica de baza de imagini pusa la dispozitie.
+In acest sens am considerat ca pot aparea doua tipare distincte destul 
+de probabile in setul de date: o situatie in care imaginile apartin mai multor clase si exista mai mult de o imagine din fiecare clasa si o 
+situatie in care imaginile apartin mai multor clase dar nu exista mai mult de o imagine din fiecare clasa. Pentru primul caz am definit 
+criteriul de performanta asemanator cu modul in care un subiect uman
+ar alege cele mai similare imagini, deci in cazul in care exista o imagine
+sursa din clasa $C$ ar fi alese ca cele mai similare tot imagini 
+apartinand clasei $C$; astfel am impartit setul de date in 5 clase de
+imagini: {monumente, dinozauri, flori, cai si masini}. Alegandu-se
+o imagine din aceste 5 clase ca imagine sursa, vor fi considerate ca
+rezultate valide doar imaginile din aceeasi clasa cu aceasta, altfel orice alta imagine dintr-o clasa distincta va fi considerata ca identificata gresit. In acest mod scorul maxim pentru o imagine sursa
+este de 3/3 imagini identificate corect.
+\quad Pentru al doilea caz, in care nu exista mai multe imagini din aceeasi clasa, nu am putut defini o metrica deoarece criteriul uman de
+selectie al imaginilor similare in acest caz este mult prea subiectiv.
+Am considerat pentru o mai buna aproximare scorul mediu pe intreg setul de date ca indice al performantei, deoarece ne intereseaza performantele
+algoritmului aplicat pe un numar cat mai mare de clase.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Tipul de LBP        &  & Scorul mediu \\ \hline
+		&  &              \\ \hline
+		LBP fundamental     &  & 1.56         \\ \hline
+		LBP mediu           &  & 1.14         \\ \hline
+		LBP circular (8,1)  &  & 1.26         \\ \hline
+		LBP circular (16,2) &  & 1.08         \\ \hline
+		LBP circular (8,3)  &  & 0.9          \\ \hline
+	\end{tabular}
+	\caption{Scorul mediu pentru fiecare varianta de LBP}
+\end{table}
+
+
+\quad Din datele obtinute putem observa ca cea mai buna performanta o are varianta de LBP fundamental cu 1.56 imagini identificate corect in medie pentru o anumita imagine sursa.

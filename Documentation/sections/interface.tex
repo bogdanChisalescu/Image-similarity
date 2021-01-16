@@ -1,0 +1,59 @@
+\section{Interfata grafica}
+
+\quad La proiectarea interfetei grafice au fost luate in considerare notiunile
+teoretice cu privire la dezvoltarea interfetelor vizuale, prezentate in cursul
+2 al disciplinei Interfete Om-Masina. Au fost respectate in acest mod: simetria,
+echilibrul, regularitatea, secventialitatea, unitatea, proportionalitatea,
+si gruparea. \\
+Atunci cand este lansata in executie aplicatia, utilizatorul este intampinat de 
+primul stadiu al interfetei grafice.
+
+\begin{figure}[H]
+	\includegraphics[width=14cm]{interface1.png}
+	\centering
+	\caption{Primul stadiu al interfetei grafice}
+\end{figure}
+
+Pentru a respecta principiul secventialitaii, utilizatorul are la dispozitie 
+performarea unei singure actiuni si anume incarcarea unei imagini, imagine ce 
+reprezinta imaginea sursa pentru care se vor identifica mai tarziu cele 3 alte
+imagini similare. Deasupra butonului este plasat un text informational ce arata
+starea curenta a aplicatiei sau actiunea ce este curent intretinuta, de asemenea functionalitatea butonului este inscrisa pe suprafata sa.
+
+
+La apasarea butonului, o fereastra de explorare a fisierelor se va deschide si va fi necesara selectarea imaginii sursa. Dupa ce este selectata, imaginea se va incarca in fereastra
+interfetei.
+
+\begin{figure}[H]
+	\includegraphics[width=14cm]{interface2.png}
+	\centering
+	\caption{Stadiul intermediar al interfetei grafice}
+\end{figure}
+
+In stadiul intermediar este prezentata imaginea sursa incarcata, si in textul 
+informational este printat numele acestei imagini asa cum apare in fisier. 
+Tot in aceasta etapa, respectand principiul gruparii, sub primul buton este afisat
+un altul ce are ca functionalitate pornirea algoritmului, ce consta in determinarea
+setului de trasaturi ale tuturor imaginilor ce se afla in acelasi director cu imagnea
+sursa. Dupa calcularea descriptorilor, pe baza distantei euclidiene sunt selectate
+cele mai similare 3 imagini si afisate conform principiului regularitatii sub imaginea
+sursa. Interfata a fost proiectata cu ajutorul modulului wx. Plecand de la structura
+clasica a unei implementari de interfata wxPython (clasa Frame, clasa Panel) au fost
+introduse functionalitatile dorite, si anume: butoanele proiectate folosind constructorul
+wx.Button(...), textul folosind wx.StaticText(...), atasarea unor evenimente butoanelor
+cu metoda wx.Bind(...) si afisarea imaginilor folosind metoda static.Bitmap(...).
+
+\begin{figure}[H]
+	\includegraphics[width=14cm]{interface3.png}
+	\centering
+	\caption{Stadiul final al interfetei grafice}
+\end{figure}
+
+In stadiul final, interfata da posibilitatea utilizatorului de a alege o alta imagine
+sursa, dar si de a calcula din nou descriptorii LBP si distantele aferente, cat si selectia
+celor mai similare 3 imagini, insa datorita faptului ca in algoritmul de determinare
+al imaginilor similare si al descriptorilor nu intervin procese stochastice rezultatele vor
+fi aceleasi pentru aceeasi imagine sursa.
+
+
+
