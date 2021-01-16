@@ -32,7 +32,7 @@ def lbp(img, window_size, mask):
     
     #stop timer and print execution time
     end = time.time()
-    print("Time spent in circular lbp [s]: " + str(end- start))
+    print("Time spent in basic lbp [s]: " + str(end- start))
     return new_img
 
 
