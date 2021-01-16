@@ -1,15 +1,26 @@
 \documentclass[12pt]{article}
 \usepackage{graphicx}
-\graphicspath{ {images/} }
+\graphicspath{ {../figures/} }
 
 \usepackage{subfiles} % Best loaded last in the preamble
 \usepackage{hyperref} %for links
+\usepackage{amssymb}
+\usepackage{float} % privides the H option
+\usepackage{subfig} 
+\usepackage{a4wide} %makes the page size more MS word like
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
 
 \title{
 
-	{Determinarea celor mai similare 3 imagini
-	must update title}\\
-	{\large Proiect IOM}
+	{
+		\vspace{-4cm}
+		Determinarea celor mai similare 3 imagini
+		pe baza descriptorului LBP si a distantei euclidiene
+	}\\
+	{\large Proiect asignat in cadrul disciplinei
+		Interfete Om-Masina
+	}
 
 
 }
@@ -19,15 +30,22 @@ Coordonator stiintific: - \\
 Student 1: Chisalescu Bogdan \\
 Student 2: Chivu Gheorghe-Iulian \\
 Student 3: Floricel Antonio-Stefan}
-\date{date of today}
+
 
 \begin{document}
 
 \maketitle
 
-
+\vspace{2cm}
 
 \subfile{dedication}
-\subfile{introduction}
+\vspace{0.5cm}
+\subfile{lbp}
+\vspace{0.5cm}
+\subfile{interface}
+\vspace{0.5cm}
+\subfile{performance}
+\vspace{0.5cm}
+\subfile{bibliography}
 
 \end{document}
